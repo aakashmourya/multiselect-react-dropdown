@@ -319,7 +319,7 @@ export class Multiselect extends React.Component {
   }
 
   renderGroupByOptions() {
-    const { isObject = false, displayValue, showCheckbox, style, singleSelect } = this.props;
+    const { isObject = false, displayValue, showCheckbox, style, singleSelect,renderOption } = this.props;
     const { groupedObject } = this.state;
     return Object.keys(groupedObject).map(obj => {
 			return (
@@ -343,7 +343,7 @@ export class Multiselect extends React.Component {
                     checked={this.isSelectedValue(option)}
                   />
 							)}
-							{isObject ? option[displayValue] : (option || '').toString()}
+							{isObject ?renderOption?renderOption(option): option[displayValue] : (option || '').toString()}
 						</li>
 					))}
 				</React.Fragment>
@@ -352,7 +352,7 @@ export class Multiselect extends React.Component {
   }
 
   renderNormalOption() {
-    const { isObject = false, displayValue, showCheckbox, style, singleSelect } = this.props;
+    const { isObject = false, displayValue, showCheckbox, style, singleSelect,renderOption } = this.props;
     const { highlightOption } = this.state;
     return this.state.options.map((option, i) => (
           <li
@@ -373,7 +373,7 @@ export class Multiselect extends React.Component {
                 checked={this.isSelectedValue(option)}
               />
             )}
-            {isObject ? option[displayValue] : (option || '').toString()}
+            {isObject ?renderOption?renderOption(option): option[displayValue] : (option || '').toString()}
           </li>
     ));
   }
@@ -503,5 +503,6 @@ Multiselect.defaultProps = {
   id: '',
   closeOnSelect: true,
   avoidHighlightFirstOption: false,
-  hidePlaceholder: false
+  hidePlaceholder: false,
+  renderOption:null
 };
