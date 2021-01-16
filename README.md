@@ -77,6 +77,7 @@ onRemove(selectedList, removedItem) {
 | `onSearch` | `function` | `func` | Callback function invoked on search in multiselect, helpful to make api call to load data from api based on search.
 | `loading` | `bool` | `false` | If options is fetching from api, in the meantime, we can show `loading...` message in the list.
 | `loadingMessage` | `any` | `''` | Custom loading message, it can be string or component.
+| `renderOption` | `function` | `null` | Custom option component, (item)=>{return (<> {item.name} </>);}.
 ----
 
 
